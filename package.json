@@ -1,0 +1,23 @@
+{
+  "name": "miss-bug-starter-react",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/shrfrn/miss-bug-starter-react#readme",
+  "bugs": {
+    "url": "https://github.com/shrfrn/miss-bug-starter-react/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrfrn/miss-bug-starter-react.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

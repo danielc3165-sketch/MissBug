@@ -13,8 +13,12 @@ export const bugService = {
     getDefaultFilter
 }
 
+var url = 'http://localhost:3034/api/bug'
+
+
 function query(filterBy) {
-    return storageService.query(STORAGE_KEY)
+    return fetch(url)
+    .then(res => res.json())
     .then(bugs => {
 
         if (filterBy.txt) {
@@ -31,19 +35,22 @@ function query(filterBy) {
 }
 
 function getById(bugId) {
-    return storageService.get(STORAGE_KEY, bugId)
+    return fetch(url+'/' + bugId)
+    .then(res => res.json())
+    .then(bug =>{ return bug})
+    .catch(err => {'Cannot get bug',err})
 }
 
 function remove(bugId) {
-    return storageService.remove(STORAGE_KEY, bugId)
+    return fetch(url+'/' + bugId+'/remove')
+    .then(res => res.json())
 }
 
 function save(bug) {
-    if (bug._id) {
-        return storageService.put(STORAGE_KEY, bug)
-    } else {
-        return storageService.post(STORAGE_KEY, bug)
-    }
+    var queryParams = '?title='+bug.title+'&severity='+bug.severity+'&description='+bug.description
+    if (bug._id) queryParams += '&id='+bug._id
+     return fetch(url+'/save'+queryParams)
+    .then(res => res.json())
 }
 
 function _createBugs() {

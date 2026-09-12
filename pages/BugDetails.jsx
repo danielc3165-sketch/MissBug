@@ -23,7 +23,10 @@ export function BugDetails() {
             <div>
                 <h3>{bug.title}</h3>
                 <p className="severity">Severity: <span>{bug.severity}</span></p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam esse facilis vitae numquam architecto mollitia fugiat culpa minima aperiam amet sapiente, voluptate sit, in nemo ea. Expedita iure tempore explicabo?</p>
+                {bug.description && <p>{bug.description}</p>}
+                {!bug.description && <p>No description available.</p>}
+                
+                
             </div>
         }
         <button><Link to="/bug">Back to List</Link></button>
