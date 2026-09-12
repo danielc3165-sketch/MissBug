@@ -1,5 +1,4 @@
 import { utilService } from './util.service.js'
-import { storageService } from './async-storage.service.js'
 
 const STORAGE_KEY = 'bugs'
 
@@ -17,8 +16,8 @@ var url = 'http://localhost:3034/api/bug'
 
 
 function query(filterBy) {
-    return fetch(url)
-    .then(res => res.json())
+    return axios.get(url)
+    .then(res => res.data)
     .then(bugs => {
 
         if (filterBy.txt) {
@@ -35,22 +34,22 @@ function query(filterBy) {
 }
 
 function getById(bugId) {
-    return fetch(url+'/' + bugId)
-    .then(res => res.json())
+    return axios.get(url+'/' + bugId)
+    .then(res => res.data)
     .then(bug =>{ return bug})
     .catch(err => {'Cannot get bug',err})
 }
 
 function remove(bugId) {
-    return fetch(url+'/' + bugId+'/remove')
-    .then(res => res.json())
+    return axios.get(url+'/' + bugId+'/remove')
+    .then(res => res.data)
 }
 
 function save(bug) {
     var queryParams = '?title='+bug.title+'&severity='+bug.severity+'&description='+bug.description
     if (bug._id) queryParams += '&id='+bug._id
-     return fetch(url+'/save'+queryParams)
-    .then(res => res.json())
+     return axios.get(url+'/save'+queryParams)
+    .then(res => res.data)
 }
 
 function _createBugs() {

@@ -6,7 +6,10 @@ import cookieParser from 'cookie-parser'
 
 
 const app = express()
+
 app.use(cookieParser())
+app.use(express.json())
+app.set('query parser', 'extended')
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -35,9 +38,9 @@ app.get('/api/bug/save', (req, res) => {
     .catch(() => res.status(400).send('Cannot save bug'))
 }) 
 
-app.get('/api/bug/:bugId', (req, res) => {
+app.get('/api/bug/:id', (req, res) => {
     
-    const { bugId} = req.params
+    const bugId = req.params.id
     console.log('bugId', bugId)
    
    const visitedIds = req.cookies.visitedIds || []
