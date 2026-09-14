@@ -12,9 +12,30 @@ export const bugService = {
 }
 
 const bugs = _readJsonFile()
+const sortBy = 'title'
 
-function query() {
-   return Promise.resolve(bugs)
+function query(filterBy = {}) {
+    var filteredBugs = [...bugs]
+
+    if (filterBy.txt){
+    const regExp = new RegExp(filterBy.txt, 'i')
+    filteredBugs = filteredBugs.filter(bug => regExp.test(bug.title))
+    }
+
+    if (filterBy.minSeverity){
+        filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
+    }
+    
+    if (sortBy === 'title') {
+        filteredBugs = filteredBugs.sort((a, b) => a.title.localeCompare(b.title))
+    }else if (sortBy === 'severity') {
+        filteredBugs = filteredBugs.sort((a, b) => a.severity - b.severity)
+    }else if (sortBy === 'creatTime') {
+        filteredBugs = filteredBugs.sort((a, b) => a.createdAt - b.createdAt)
+    } 
+    
+    
+    return Promise.resolve(filteredBugs)
 }
 
 function get(_id){
@@ -24,6 +45,7 @@ function get(_id){
 function save(bug) {
     if (bug._id) {
         const idx = bugs.findIndex(currBug => currBug._id === bug._id)
+        if (idx === -1) return Promise.reject('Bug not found')
         bugs.splice(idx, 1, bug)
     } else {
         bug._id = utilService.makeId()

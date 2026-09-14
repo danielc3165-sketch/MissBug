@@ -16,20 +16,10 @@ var url = 'http://localhost:3034/api/bug'
 
 
 function query(filterBy) {
-    return axios.get(url)
+    return axios.get(url,{ params: filterBy })
     .then(res => res.data)
     .then(bugs => {
-
-        if (filterBy.txt) {
-            const regExp = new RegExp(filterBy.txt, 'i')
-            bugs = bugs.filter(bug => regExp.test(bug.title))
-        }
-
-        if (filterBy.minSeverity) {
-            bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
-        }
-
-        return bugs
+     return bugs
     })
 }
 
@@ -41,15 +31,19 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-    return axios.get(url+'/' + bugId+'/remove')
+    return axios.delete(url+'/' + bugId)
     .then(res => res.data)
 }
 
 function save(bug) {
-    var queryParams = '?title='+bug.title+'&severity='+bug.severity+'&description='+bug.description
-    if (bug._id) queryParams += '&id='+bug._id
-     return axios.get(url+'/save'+queryParams)
-    .then(res => res.data)
+    if (bug._id) {
+        return axios.put(url+'/'+bug._id, bug)
+        .then(res => res.data)
+    }
+     else {
+        return axios.post(url, bug)
+        .then(res => res.data)
+    }
 }
 
 function _createBugs() {

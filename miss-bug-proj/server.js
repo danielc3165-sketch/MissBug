@@ -17,7 +17,13 @@ app.use((req, res, next) => {
 })
 
 app.get('/api/bug', (req, res) => {
-    bugService.query()
+
+     var filterBy = { 
+        txt: req.query.txt || '' ,
+        minSeverity: +req.query.minSeverity || 0
+    }
+
+    bugService.query(filterBy)
         .then(bugs => {
             res.send(bugs)
             //console.log('bugs', bugs)
@@ -26,10 +32,17 @@ app.get('/api/bug', (req, res) => {
 })
 
 
-app.get('/api/bug/save', (req, res) => {
+app.put('/api/bug/:id', (req, res) => {
    
-    const { title, severity, description, id: _id }= req.query
-    const bug = { title, severity:+severity, description, _id }
+    const bug={
+        _id: req.body.id,
+        title: req.body.title,
+        severity: req.body.severity,
+        description: req.body.description,
+    }
+
+    console.log('bug', bug)
+
     bugService.save(bug)
     .then(savedBug => {
         console.log('bug', savedBug)
@@ -38,9 +51,33 @@ app.get('/api/bug/save', (req, res) => {
     .catch(() => res.status(400).send('Cannot save bug'))
 }) 
 
+
+app.post('/api/bug/', (req, res) => {
+   
+    const bug={
+        title: req.body.title,
+        severity: req.body.severity,
+        description: req.body.description,
+    }
+
+    console.log('bug', bug)
+
+    bugService.save(bug)
+    .then(savedBug => {
+        console.log('bug', savedBug)
+        res.send(savedBug)
+    })
+    .catch(() => res.status(400).send('Cannot save bug'))
+}) 
+
+
+
+
+
 app.get('/api/bug/:id', (req, res) => {
     
     const bugId = req.params.id
+    //
     console.log('bugId', bugId)
    
    const visitedIds = req.cookies.visitedIds || []
@@ -50,6 +87,7 @@ app.get('/api/bug/:id', (req, res) => {
         else {
              visitedIds.push(bugId)
              console.log(visitedIds)
+    
              res.cookie('visitedIds', visitedIds)
         }
     }
@@ -64,8 +102,10 @@ app.get('/api/bug/:id', (req, res) => {
 }) 
 
 
-app.get('/api/bug/:bugId/remove', (req, res) => {
+app.delete('/api/bug/:bugId', (req, res) => {
+
     const { bugId:_id } = req.params
+    console.log('bugId', _id)
     bugService.remove(_id)
     .then(() => {
         res.send('Bug removed')
