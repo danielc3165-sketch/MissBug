@@ -12,9 +12,10 @@ export const bugService = {
 }
 
 const bugs = _readJsonFile()
-const sortBy = 'title'
+var sortBy = 'severity'
+var label= 'critical'
 
-function query(filterBy = {}) {
+function query(filterBy = {}, pageIdx = 0) {
     var filteredBugs = [...bugs]
 
     if (filterBy.txt){
@@ -25,6 +26,10 @@ function query(filterBy = {}) {
     if (filterBy.minSeverity){
         filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
     }
+
+    if (filterBy.labels && filterBy.labels.length > 0) {
+        filteredBugs = filteredBugs.filter(bug => bug.labels.includes(label))
+    }
     
     if (sortBy === 'title') {
         filteredBugs = filteredBugs.sort((a, b) => a.title.localeCompare(b.title))
@@ -32,7 +37,9 @@ function query(filterBy = {}) {
         filteredBugs = filteredBugs.sort((a, b) => a.severity - b.severity)
     }else if (sortBy === 'creatTime') {
         filteredBugs = filteredBugs.sort((a, b) => a.createdAt - b.createdAt)
-    } 
+    }
+
+    filteredBugs = filteredBugs.slice(pageIdx * 3, (pageIdx + 1) * 3)
     
     
     return Promise.resolve(filteredBugs)
@@ -71,7 +78,7 @@ function _readJsonFile() {
 
 function _saveBugsToFile() {
     return new Promise((resolve, reject) => {
-        const data = JSON.stringify(bugs)
+        const data = JSON.stringify(bugs,null ,2)
         fs.writeFile('data.json', data, (err) => {
             if (err) {
                 return reject(err);

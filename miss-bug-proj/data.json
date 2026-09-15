@@ -1,1 +1,33 @@
-[{"_id":"abc123","title":"Cannot save a new car","description":"problem when clicking Save","severity":3,"createdAt":1542107359454},{"title":"Login button is not working","severity":3,"_id":"def456"},{"_id":"ghi789","title":"Page loads slowly","description":"problem when opening the bug list","severity":1,"createdAt":1542107359456},{"title":"Bug 1789245694619","severity":4,"description":"Bug description","_id":"NrRDkI"}]
+[
+  {
+    "_id": "abc123",
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1542107359454,
+    "labels": ["critical", "need-CR"]
+  },
+  {
+    "_id": "def456",
+    "title": "Login button is not working",
+    "severity": 3,
+    "createdAt": 1542107359455,
+    "labels": ["dev-branch"]
+  },
+  {
+    "_id": "ghi789",
+    "title": "Page loads slowly",
+    "description": "problem when opening the bug list",
+    "severity": 1,
+    "createdAt": 1542107359456,
+    "labels": ["critical", "dev-branch", "need-CR"]
+  },
+  {
+    "title": "Bug 1789245694619",
+    "severity": 4,
+    "description": "Bug description",
+    "_id": "NrRDkI",
+    "createdAt": 1542107359457,
+    "labels": ["need-CR"]
+  }
+]

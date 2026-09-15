@@ -15,8 +15,8 @@ export const bugService = {
 var url = 'http://localhost:3034/api/bug'
 
 
-function query(filterBy) {
-    return axios.get(url,{ params: filterBy })
+function query(filterBy, pageIdx) {
+    return axios.get(url,{ params:{filterBy, pageIdx} })
     .then(res => res.data)
     .then(bugs => {
      return bugs
@@ -76,5 +76,5 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0 }
+    return { txt: '', minSeverity: 0, labels: '' }
 }

@@ -9,11 +9,14 @@ import { BugList } from '../cmps/BugList.jsx'
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+    const [pageIdx, setPageIdx] = useState(0)
 
-    useEffect(loadBugs, [filterBy])
+    useEffect(() => {
+        loadBugs()
+    }, [filterBy, pageIdx])
 
     function loadBugs() {
-        bugService.query(filterBy)
+        bugService.query(filterBy, pageIdx)
             .then(setBugs)
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
     }
@@ -64,6 +67,16 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function getIdx(btnType) {
+        if (btnType === 'prev') {
+            if (pageIdx === 0) return Math.ceil(bugs.length/3)
+            else return pageIdx - 1
+        } else { 
+            if (pageIdx === Math.ceil(bugs.length/3)) return 0
+            else return pageIdx + 1
+        }
+    }
+
     return <section className="bug-index main-content">
         
         <header>
@@ -79,5 +92,10 @@ export function BugIndex() {
             bugs={bugs} 
             onRemoveBug={onRemoveBug} 
             onEditBug={onEditBug} />
+
+        <div className="pagination">
+            <button onClick={() => setPageIdx(getIdx('prev'))}>Prev</button>
+            <button onClick={() => setPageIdx(getIdx('next'))}>Next</button>
+        </div>
     </section>
 }

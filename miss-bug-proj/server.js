@@ -18,12 +18,16 @@ app.use((req, res, next) => {
 
 app.get('/api/bug', (req, res) => {
 
+      
+
      var filterBy = { 
-        txt: req.query.txt || '' ,
-        minSeverity: +req.query.minSeverity || 0
+        txt: req.query.filterBy.txt || '' ,
+        minSeverity: +req.query.filterBy.minSeverity || 0,
     }
 
-    bugService.query(filterBy)
+    var pageIdx = +req.query.pageIdx || 0
+    console.log('pageIdx', pageIdx)
+    bugService.query(filterBy, pageIdx)
         .then(bugs => {
             res.send(bugs)
             //console.log('bugs', bugs)
