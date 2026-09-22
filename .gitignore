@@ -1,2 +1,4 @@
-.vscode/settings.json
-miss-bug-proj/node_modules
+node_modules
+logs/backend.log
+**/.DS_Store
+package-lock.json

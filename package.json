@@ -1,24 +1,23 @@
 {
-  "name": "miss-bug-starter-react",
+  "name": "miss-bug-proj",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/shrfrn/miss-bug-starter-react#readme",
-  "bugs": {
-    "url": "https://github.com/shrfrn/miss-bug-starter-react/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shrfrn/miss-bug-starter-react.git"
-  },
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "app.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "axios": "^1.20.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }
