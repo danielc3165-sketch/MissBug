@@ -20,7 +20,6 @@ app.set('query parser', 'extended')
 
 app.get('/api/bug', (req, res) => {
 
-      
 
      const filterBy = { 
         txt: req.query.filterBy.txt || '' ,

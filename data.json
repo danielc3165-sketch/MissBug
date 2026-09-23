@@ -9,7 +9,11 @@
       "critical",
       "dev-branch",
       "need-CR"
-    ]
+    ],
+    "creator": { 
+      "_id": "u101", 
+      "fullname": "Puki Ja" 
+    } 
   },
   {
     "_id": "bI3H34",
@@ -21,7 +25,11 @@
       "critical",
       "dev-branch",
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Maya Chen"
+    }
   },
   {
     "_id": "ghi789",
@@ -33,7 +41,11 @@
       "critical",
       "dev-branch",
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u103",
+      "fullname": "Noah Williams"
+    }
   },
   {
     "_id": "MBY5wx",
@@ -42,7 +54,11 @@
     "description": "problem when opening the bug list",
     "labels": [
       "dev-branch"
-    ]
+    ],
+    "creator": {
+      "_id": "u104",
+      "fullname": "Liam Carter"
+    }
   },
   {
     "_id": "6nv6kK",
@@ -51,7 +67,11 @@
     "description": "problem when opening the bug list",
     "labels": [
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u105",
+      "fullname": "Emma Davis"
+    }
   },
   {
     "_id": "ASx6jg",
@@ -59,7 +79,11 @@
     "severity": 4,
     "labels": [
       "critical"
-    ]
+    ],
+    "creator": {
+      "_id": "u106",
+      "fullname": "Olivia Wilson"
+    }
   },
   {
     "_id": "SZuJIq",
@@ -67,7 +91,11 @@
     "severity": 3,
     "labels": [
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u107",
+      "fullname": "Ethan Brown"
+    }
   },
   {
     "title": "bug1",
@@ -78,7 +106,11 @@
       "critical",
       "dev-branch",
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u108",
+      "fullname": "Sophia Miller"
+    }
   },
   {
     "title": "יאללה הפועל!",
@@ -88,7 +120,11 @@
     "labels": [
       "critical",
       "dev-branch"
-    ]
+    ],
+    "creator": {
+      "_id": "u109",
+      "fullname": "Lucas Taylor"
+    }
   },
   {
     "title": "הפועל באר שבע!",
@@ -97,7 +133,11 @@
     "_id": "forfir",
     "labels": [
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u110",
+      "fullname": "Ava Anderson"
+    }
   },
   {
     "_id": "K98HkB",
@@ -106,6 +146,10 @@
     "description": "הפועל אלופה!",
     "labels": [
       "need-CR"
-    ]
+    ],
+    "creator": {
+      "_id": "u111",
+      "fullname": "James Thomas"
+    }
   }
 ]
