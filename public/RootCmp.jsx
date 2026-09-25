@@ -1,4 +1,5 @@
 const Router = ReactRouterDOM.HashRouter
+const { useState } = React
 const { Route, Routes } = ReactRouterDOM
 
 import { UserMsg } from './cmps/UserMsg.jsx'
@@ -11,11 +12,19 @@ import { AboutUs } from './pages/AboutUs.jsx'
 import { UserDetails } from './pages/UserDetails.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 
+import { userService } from './services/user-service.js'
+
 export function App() {
+
+    const [ currUser,setCurrUser ] = useState(userService.getLoggedinUser())
+    
+    console.log('currUser',currUser)
+
+
     return <Router>
         <div className="app-wrapper">
             <UserMsg />
-            <AppHeader />
+            <AppHeader currUser={currUser} />
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />

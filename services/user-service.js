@@ -16,6 +16,10 @@ function query(){
 }
 
 function add(user={}){
+    return getByUsername(user.userName)
+    .then(userEX=>{
+        if(userEX) return Promise.reject('Username taken')
+       
     user._id=utilService.makeId()
     users.push(user)
     
@@ -25,7 +29,13 @@ function add(user={}){
         delete user.password
         return user
     })
- 
+ })
+}
+
+function getByUsername(userName) {
+        
+	var user = users.find(user => user.userName === userName)
+    return Promise.resolve(user)
 }
 
 function _readUserJsonFile() {

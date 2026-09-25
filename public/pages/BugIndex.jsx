@@ -26,7 +26,7 @@ export function BugIndex() {
             .then((results)=>{
                 setBugs(results.bugs)
                 setPagesCount(results.pagesCount)
-                console.log('pagesCount',results.pagesCount)
+                //console.log('pagesCount',results.pagesCount)
                // console.log('filterBy:', filterBy)
             })
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))

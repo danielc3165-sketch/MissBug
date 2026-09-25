@@ -139,12 +139,17 @@ app.delete('/api/bug/:bugId', (req, res) => {
 
 
 app.post('/api/auth/signup', (req, res) =>{
-      
-      const user = req.body
-      userService.add(user)
-      .then(user=>res.send(user))
-      
-      
+    const user = req.body
+    userService.add(user)
+    .then((user)=>{
+        if(user){
+            console.log('user',user) 
+            res.cookie('loginToken',user)
+            res.send(user)
+        }
+        else res.status(400).send('Can not signup')
+    })
+    .catch(()=>res.status(400).send('Name taken'))
 
 })
 
@@ -154,7 +159,8 @@ app.post('/api/auth/login ', (req, res) =>{
 })
 
 app.post('/api/auth/logout', (req, res) =>{
-    console.log('it work')
+    res.clearCookie('loginToken')
+    res.send('logged-out!')
 })
 
 
