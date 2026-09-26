@@ -1,4 +1,5 @@
 import { utilService } from './util.service.js'
+import { userService } from './user-service.js'
 
 const STORAGE_KEY = 'bugs'
 
@@ -42,8 +43,10 @@ function save(bug) {
         .then(res => res.data)
     }
      else {
-        console.log('bug', bug)
-        return axios.post(url, bug)
+        //console.log('bug', bug)
+        const bugUser=userService.getLoggedinUser()
+        bug.creator=bugUser
+        return axios.post(url,bug)
         .then(res => res.data)
     }
 }

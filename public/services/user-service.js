@@ -12,18 +12,25 @@ const STORAGE_KEY_LOGGEDIN_USER='curr-user'
 
 
 function login(user){
+    return axios.post(url+'/login',user)
+    .then(res => res.data)
+    .then(user=> _setLoggedinUser(user))
+    .catch(err => {'Cannot login',err})
 }
 
 function signup(user){
     return axios.post(url+'/signup',user)
     .then(res => res.data)
     .then(user=> _setLoggedinUser(user))
-    .catch(err => {'Cannot add bug',err})
+    .catch(err => {'Cannot add signup',err})
 }
 
+
 function logout(){
-    console.log('it work')
+    return axios.post(url+'/logout')
+    .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER))
 }
+
 
 function getUserDetailsDefult(){
     return {

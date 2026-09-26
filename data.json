@@ -1,5 +1,83 @@
 [
   {
+    "title": "New bug",
+    "severity": 5,
+    "description": "The new! The best!",
+    "creator": {
+      "_id": "Dc91NP",
+      "fullName": "daniel.c"
+    },
+    "_id": "JQjXjv",
+    "createdAt": 1790465438905,
+    "labels": [
+      "critical"
+    ]
+  },
+  {
+    "title": "Bug 179",
+    "severity": 2,
+    "description": "17 somthing",
+    "creator": {
+      "_id": "Dc91NP",
+      "fullName": "daniel.c"
+    },
+    "_id": "hNYmgC",
+    "createdAt": 1790452173839,
+    "labels": [
+      "need-CR"
+    ]
+  },
+  {
+    "title": "rrr",
+    "severity": 1,
+    "description": "rrr",
+    "_id": "iAtGNQ",
+    "createdAt": 1790451622126,
+    "labels": [
+      "critical"
+    ]
+  },
+  {
+    "title": "bug100",
+    "severity": 1,
+    "description": "Bug description",
+    "_id": "38TR1v",
+    "createdAt": 1790451591763,
+    "labels": [
+      "need-CR"
+    ]
+  },
+  {
+    "title": "Bbug",
+    "severity": 2,
+    "description": "B.B.B",
+    "_id": "bKrfM5",
+    "createdAt": 1790451473827,
+    "labels": [
+      "critical"
+    ]
+  },
+  {
+    "title": "Super bug",
+    "severity": 6,
+    "description": "Wow! What a bug...",
+    "_id": "UXWV6R",
+    "createdAt": 1790451350681,
+    "labels": [
+      "dev-branch"
+    ]
+  },
+  {
+    "title": "bug 2000",
+    "severity": 9,
+    "description": "Not realy",
+    "_id": "A9DHpl",
+    "createdAt": 1790448378897,
+    "labels": [
+      "need-CR"
+    ]
+  },
+  {
     "_id": "Tp0Vd2",
     "title": "יאללה הפועל!",
     "severity": 5,
@@ -10,10 +88,10 @@
       "dev-branch",
       "need-CR"
     ],
-    "creator": { 
-      "_id": "u101", 
-      "fullname": "Puki Ja" 
-    } 
+    "creator": {
+      "_id": "u101",
+      "fullname": "Puki Ja"
+    }
   },
   {
     "_id": "bI3H34",

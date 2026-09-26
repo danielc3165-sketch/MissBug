@@ -8,12 +8,13 @@ import { BugFilter } from '../cmps/BugFilter.jsx'
 import { BugSort } from '../cmps/BugSort.jsx'
 import { BugList } from '../cmps/BugList.jsx'
 
-export function BugIndex() {
+export function BugIndex({currUser}) {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
     const [sortBy, setSortBy] = useState('title')
     const [pageIdx, setPageIdx] = useState(0)
     const [pagesCount,setPagesCount] = useState()
+    
 
 
     useEffect(() => {
@@ -109,7 +110,8 @@ export function BugIndex() {
         <BugList 
             bugs={bugs} 
             onRemoveBug={onRemoveBug} 
-            onEditBug={onEditBug} />
+            onEditBug={onEditBug}
+            currUser={currUser} />
 
         <div className="pagination">
             <button onClick={() => setPageIdx(getIdx('prev'))}>Prev</button>

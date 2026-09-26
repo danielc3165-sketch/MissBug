@@ -67,9 +67,12 @@ function save(bug) {
     } else {
         bug._id = utilService.makeId()
         bug.createdAt=Date.now()
+        bug.labels=_createLabels()
         bugs.unshift(bug)
     }
    
+    // console.log('bugToAdd',bug)
+
     _saveBugsToFile()
     return Promise.resolve(bug)
 }
@@ -79,6 +82,13 @@ function remove(_id) {
     bugs.splice(idx, 1)
     _saveBugsToFile()
     return Promise.resolve()
+}
+
+function _createLabels(){
+    var labels= [ 'critical','dev-branch','need-CR' ]
+    const index= utilService.getRandomIntInclusive(0,2)
+    var labelToAdd=[labels[index]]
+    return labelToAdd
 }
 
 function _readJsonFile() {

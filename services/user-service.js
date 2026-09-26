@@ -1,10 +1,13 @@
 import fs from 'fs'
 
 import { utilService } from "./util-service.js"
+import console from 'console'
+import { resolve } from 'dns'
 
 export const userService = {
    query,
-   add
+   add,
+   checkLogin
 }
 
 const users = _readUserJsonFile()
@@ -32,8 +35,19 @@ function add(user={}){
  })
 }
 
+function checkLogin({userName,password}){
+    return getByUsername(userName)
+    .then(user=>{
+    if(user && password===user.password){
+    user = {...user}
+    delete user.password
+    return Promise.resolve(user)
+    } 
+    else return Promise.reject()
+})
+}
+
 function getByUsername(userName) {
-        
 	var user = users.find(user => user.userName === userName)
     return Promise.resolve(user)
 }

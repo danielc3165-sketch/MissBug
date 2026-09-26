@@ -1,11 +1,18 @@
 const { NavLink } = ReactRouterDOM
+const { useNavigate } = ReactRouter
 
 import { userService } from "../services/user-service.js"
 
-export function AppHeader({currUser}) {
+export function AppHeader({currUser,setCurrUser}) {
+
+    const navigate = useNavigate()
 
     function onLogout(){
         userService.logout()
+        .then(()=>{
+            setCurrUser(null)
+            navigate('/loginSignup')
+        })
     }
 
     return <header className="app-header main-content single-row">
@@ -15,7 +22,7 @@ export function AppHeader({currUser}) {
             <NavLink to="/bug">Bugs</NavLink>
             <NavLink to="/about">About</NavLink>
             {!currUser && <NavLink to="/loginSignup">Login</NavLink>}
-            <button onClick={onLogout}>Logout</button>
+            {currUser && <button onClick={onLogout}>Logout</button>}
         </nav>
     </header>
 }

@@ -98,15 +98,15 @@ app.put('/api/bug/:id', (req, res) => {
 }) 
 
 
-app.post('/api/bug/', (req, res) => {
-    console.log('it works')
+app.post('/api/bug', (req, res) => {
     const bug={
         title: req.body.title,
         severity: req.body.severity,
         description: req.body.description,
+        creator:req.body.creator || {}
     }
 
-    console.log('bug', bug)
+    console.log('bug to add', bug)
 
     bugService.save(bug)
     .then(savedBug => {
@@ -143,7 +143,7 @@ app.post('/api/auth/signup', (req, res) =>{
     userService.add(user)
     .then((user)=>{
         if(user){
-            console.log('user',user) 
+            //console.log('user',user) 
             res.cookie('loginToken',user)
             res.send(user)
         }
@@ -153,9 +153,14 @@ app.post('/api/auth/signup', (req, res) =>{
 
 })
 
-app.post('/api/auth/login ', (req, res) =>{
-
-    console.log('it work')
+app.post('/api/auth/login', (req, res) =>{
+    const user = req.body
+    userService.checkLogin(user)
+    .then(user=>{
+        res.cookie('loginToken',user)
+        res.send(user)
+    })
+    .catch(()=>res.status(404).send('Invalid Credentials'))
 })
 
 app.post('/api/auth/logout', (req, res) =>{

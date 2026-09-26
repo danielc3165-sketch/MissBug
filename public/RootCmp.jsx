@@ -24,15 +24,19 @@ export function App() {
     return <Router>
         <div className="app-wrapper">
             <UserMsg />
-            <AppHeader currUser={currUser} />
+            <AppHeader currUser={currUser} setCurrUser={setCurrUser}/>
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/bug" element={<BugIndex />} />
+                    <Route path="/bug" element={<BugIndex currUser={currUser} />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/userDetails" element={ <UserDetails />} />
-                    <Route path="/loginSignup" element={ <LoginSignup />} />
+                    <Route path="/loginSignup" element={ <LoginSignup 
+                    currUser={currUser} 
+                    setCurrUser={setCurrUser} />
+                    } />
+                                                         
                 </Routes>
             </main>
             <AppFooter />
