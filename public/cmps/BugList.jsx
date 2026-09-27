@@ -11,6 +11,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug, currUser }) {
         else return false
         }
     }
+    
 
     if (!bugs) return <div>Loading...</div>
     return <ul className="bug-list">

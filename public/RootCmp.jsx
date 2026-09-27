@@ -31,7 +31,7 @@ export function App() {
                     <Route path="/bug" element={<BugIndex currUser={currUser} />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
-                    <Route path="/userDetails" element={ <UserDetails />} />
+                    <Route path="/userDetails" element={ <UserDetails currUser={currUser}/>} />
                     <Route path="/loginSignup" element={ <LoginSignup 
                     currUser={currUser} 
                     setCurrUser={setCurrUser} />
