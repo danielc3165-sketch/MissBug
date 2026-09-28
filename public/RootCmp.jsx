@@ -1,4 +1,4 @@
-const Router = ReactRouterDOM.HashRouter
+const Router = ReactRouterDOM.BrowserRouter
 const { useState } = React
 const { Route, Routes } = ReactRouterDOM
 

@@ -43,7 +43,7 @@ function query(filterBy = {}, pageIdx = 0, sortBy = 'title') {
         filteredBugs = filteredBugs.sort((a, b) => a.createdAt - b.createdAt)
     }
     
-    var pageSize=3
+    var pageSize=6
     results.pagesCount=Math.ceil(filteredBugs.length/pageSize)
     
     

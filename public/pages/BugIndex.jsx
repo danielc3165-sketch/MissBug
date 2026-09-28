@@ -15,20 +15,16 @@ export function BugIndex({currUser}) {
     const [pageIdx, setPageIdx] = useState(0)
     const [pagesCount,setPagesCount] = useState()
     
-
-
     useEffect(() => {
         loadBugs()
         
     }, [filterBy, pageIdx, sortBy])
 
     function loadBugs() {
-        bugService.query(filterBy, pageIdx, sortBy)
+            bugService.query(filterBy, pageIdx, sortBy)
             .then((results)=>{
                 setBugs(results.bugs)
                 setPagesCount(results.pagesCount)
-                //console.log('pagesCount',results.pagesCount)
-               // console.log('filterBy:', filterBy)
             })
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
     }
@@ -98,7 +94,7 @@ export function BugIndex({currUser}) {
         
         <header>
             <h2>Bug List</h2>
-            <button onClick={onAddBug}>Add Bug</button>
+            {currUser && <button onClick={onAddBug}>Add Bug</button>}
         </header>
         
         <BugFilter 

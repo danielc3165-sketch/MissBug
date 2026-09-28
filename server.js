@@ -2,6 +2,7 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import path from 'path'
 
 import { bugService } from './services/bug-service.js'
 import { loggerService } from './services/logger-service.js'
@@ -15,6 +16,8 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
+
+app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json())
 app.set('query parser', 'extended')
@@ -22,15 +25,11 @@ app.set('query parser', 'extended')
 
 app.get('/api/bug', (req, res) => {
 
-     const currUser= req.currUser
-     console.log('currU',currUser)
-
      const filterBy = { 
         txt: req.query.filterBy.txt || '' ,
         minSeverity: +req.query.filterBy.minSeverity || 0,
         labels: req.query.filterBy.labels || []
     }
-
     //console.log('filterBy:', filterBy)
 
     const pageIdx = +req.query.pageIdx || 0
@@ -168,6 +167,10 @@ app.post('/api/auth/login', (req, res) =>{
 app.post('/api/auth/logout', (req, res) =>{
     res.clearCookie('loginToken')
     res.send('logged-out!')
+})
+
+app.get('{*splat}', (req, res) => {
+    res.sendFile(path.resolve('public/index.html'))
 })
 
 

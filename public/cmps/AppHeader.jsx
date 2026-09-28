@@ -21,6 +21,7 @@ export function AppHeader({currUser,setCurrUser}) {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/bug">Bugs</NavLink>
             <NavLink to="/about">About</NavLink>
+            {currUser && <NavLink to="/userDetails">Profile</NavLink>}
             {!currUser && <NavLink to="/loginSignup">Login</NavLink>}
             {currUser && <button onClick={onLogout}>Logout</button>}
         </nav>
