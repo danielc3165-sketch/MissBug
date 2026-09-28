@@ -1,6 +1,6 @@
 
 import express from 'express'
-import cors from 'cors'
+// import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 
@@ -11,11 +11,11 @@ import { userService } from './services/user-service.js'
 const app = express()
 
 
-app.use(cors({
-    origin: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}))
+// app.use(cors({
+//     origin: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true
+// }))
 
 app.use(express.static('public'))
 app.use(cookieParser())
