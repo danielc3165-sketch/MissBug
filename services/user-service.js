@@ -4,7 +4,7 @@ import Cryptr from 'cryptr'
 import { utilService } from "./util-service.js"
 
 
-const cryptr = new Cryptr('secret-puk-1234')
+const cryptr = new Cryptr(process.env.SECRET1 || 'secret-puk-1234')
 
 export const userService = {
    query,
