@@ -1,13 +1,17 @@
 import fs from 'fs'
+import Cryptr from 'cryptr'
 
 import { utilService } from "./util-service.js"
-import console from 'console'
-import { resolve } from 'dns'
+
+
+const cryptr = new Cryptr('secret-puk-1234')
 
 export const userService = {
    query,
    add,
-   checkLogin
+   checkLogin,
+   getLoginToken,
+   validateToken,
 }
 
 const users = _readUserJsonFile()
@@ -50,6 +54,20 @@ function checkLogin({userName,password}){
 function getByUsername(userName) {
 	var user = users.find(user => user.userName === userName)
     return Promise.resolve(user)
+}
+
+function validateToken(token){
+   if(!token) return null
+
+   const str = cryptr.decrypt(token)
+   const user = JSON.parse(str)
+   return user
+}
+
+function getLoginToken(user) {
+	const str = JSON.stringify(user)
+	const encryptedStr = cryptr.encrypt(str)
+	return encryptedStr
 }
 
 function _readUserJsonFile() {

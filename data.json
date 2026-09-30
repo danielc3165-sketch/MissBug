@@ -1,14 +1,102 @@
 [
   {
-    "title": "4444",
+    "_id": "XS8x7x",
+    "title": "Cool bug 222",
+    "severity": 2,
+    "description": "Bug description here",
+    "createdAt": 1790736286694,
+    "labels": [
+      "need-CR"
+    ]
+  },
+  {
+    "_id": "z879nJ",
+    "title": "ffas",
+    "severity": 1,
+    "description": "Bug description",
+    "createdAt": 1790736180753,
+    "labels": [
+      "critical"
+    ]
+  },
+  {
+    "_id": "VafZBX",
+    "title": "Bbug",
     "severity": 3,
+    "description": "B.B.B",
+    "createdAt": 1790736146730,
+    "labels": [
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "2QPJQ0",
+    "title": "bug100",
+    "severity": 100,
+    "description": "Bug description",
+    "createdAt": 1790735426585,
+    "labels": [
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "oVrYvk",
+    "title": "bug1",
+    "severity": 1,
+    "description": "this bug1",
+    "createdAt": 1790735390262,
+    "labels": [
+      "need-CR"
+    ]
+  },
+  {
+    "_id": "6fZ7mQ",
+    "title": "4444",
+    "severity": 4,
     "description": "4444",
+    "createdAt": 1790735343904,
+    "labels": [
+      "dev-branch"
+    ]
+  },
+  {
+    "title": "Cool bug 222",
+    "severity": 3,
+    "description": "Bug description here",
     "creator": {
       "_id": "Dc91NP",
-      "fullName": "daniel.c"
+      "fullName": "ddd"
     },
-    "_id": "VSkG3c",
-    "createdAt": 1790628269626,
+    "_id": "SNgxJd",
+    "createdAt": 1790701901362,
+    "labels": [
+      "need-CR"
+    ]
+  },
+  {
+    "title": "Cool bug",
+    "severity": 3,
+    "description": "Bug description here",
+    "creator": {
+      "_id": "Dc91NP",
+      "fullName": "ddd"
+    },
+    "_id": "6hVi1M",
+    "createdAt": 1790701650314,
+    "labels": [
+      "dev-branch"
+    ]
+  },
+  {
+    "title": "ddd",
+    "severity": 3,
+    "description": "ddd's bug",
+    "creator": {
+      "_id": "csLpMa",
+      "fullName": "ddd"
+    },
+    "_id": "3wE3e2",
+    "createdAt": 1790655664909,
     "labels": [
       "dev-branch"
     ]
@@ -42,36 +130,6 @@
     ]
   },
   {
-    "title": "rrr",
-    "severity": 1,
-    "description": "rrr",
-    "_id": "iAtGNQ",
-    "createdAt": 1790451622126,
-    "labels": [
-      "critical"
-    ]
-  },
-  {
-    "title": "bug100",
-    "severity": 1,
-    "description": "Bug description",
-    "_id": "38TR1v",
-    "createdAt": 1790451591763,
-    "labels": [
-      "need-CR"
-    ]
-  },
-  {
-    "title": "Bbug",
-    "severity": 2,
-    "description": "B.B.B",
-    "_id": "bKrfM5",
-    "createdAt": 1790451473827,
-    "labels": [
-      "critical"
-    ]
-  },
-  {
     "title": "Super bug",
     "severity": 6,
     "description": "Wow! What a bug...",
@@ -90,22 +148,6 @@
     "labels": [
       "need-CR"
     ]
-  },
-  {
-    "_id": "Tp0Vd2",
-    "title": "יאללה הפועל!",
-    "severity": 5,
-    "description": "הפועל אלופה!",
-    "createdAt": 1789735078924,
-    "labels": [
-      "critical",
-      "dev-branch",
-      "need-CR"
-    ],
-    "creator": {
-      "_id": "u101",
-      "fullname": "Puki Ja"
-    }
   },
   {
     "_id": "bI3H34",
@@ -187,35 +229,6 @@
     "creator": {
       "_id": "u107",
       "fullname": "Ethan Brown"
-    }
-  },
-  {
-    "title": "bug1",
-    "severity": 2,
-    "description": "this bug1",
-    "_id": "yKcv5J",
-    "labels": [
-      "critical",
-      "dev-branch",
-      "need-CR"
-    ],
-    "creator": {
-      "_id": "u108",
-      "fullname": "Sophia Miller"
-    }
-  },
-  {
-    "title": "יאללה הפועל!",
-    "severity": 4,
-    "description": "הפועל אלופה!",
-    "_id": "J8QLSZ",
-    "labels": [
-      "critical",
-      "dev-branch"
-    ],
-    "creator": {
-      "_id": "u109",
-      "fullname": "Lucas Taylor"
     }
   },
   {

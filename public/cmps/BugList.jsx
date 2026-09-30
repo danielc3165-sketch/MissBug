@@ -5,13 +5,14 @@ import { BugPreview } from './BugPreview.jsx'
 export function BugList({ bugs, onRemoveBug, onEditBug, currUser }) {
 
     function isAllowed(bug){
-        if(!currUser || !bug.creator) return false
-        else{
+        if(!currUser) return false
+        if(currUser.isAdmin) return true
+        if(!bug.creator) return false
+         else{
         if(currUser._id===bug.creator._id) return true
         else return false
         }
     }
-    
 
     if (!bugs) return <div>Loading...</div>
     return <ul className="bug-list">

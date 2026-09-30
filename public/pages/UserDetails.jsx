@@ -1,46 +1,48 @@
 const { Link } = ReactRouterDOM
 const { NavLink } = ReactRouterDOM
-const { useState } = React
+const { useState,useEffect } = React
 
 import { BugPreview } from "../cmps/BugPreview.jsx"
 import { bugService } from "../services/bug.service.local.js"
 
 export function UserDetails({ currUser }) {
-      
-    // function isAllowed(bug){
-    //     if(!currUser || !bug.creator) return false
-    //     else{
-    //     if(currUser._id===bug.creator._id) return true
-    //     else return false
-    //     }
-    // }
     
+    if(!currUser) return
 
-    // if (!bugs) return <div>Loading...</div>
+    const [bugs,setBugs] = useState([])
+
+    useEffect(()=>{
+    bugService.queryCurrUserBugs(currUser._id)
+    .then(bugs=>setBugs(bugs))
+    
+     },currUser)
+      
+
+    if (!bugs) return <div>Loading...</div>
     return <section>
     
-    <h1>UserDetails</h1>
+    <h2>UserDetails</h2>
     
-    <p>Name:{currUser.fullName}</p>
-    <p>bugs:</p>
     <br></br>
+
+    <h3>Name:{currUser.fullName}</h3>
+    
+    <ul className="bug-list">
+        {bugs.map(bug => (
+            <li key={bug._id}>
+                <BugPreview bug={bug} />
+                <section className="actions">
+                    <button><Link to={`/bug/${bug._id}`}>Details</Link></button>
+                    
+                </section>
+            </li>
+        ))}
+    </ul >
+
     <br></br>
-    <NavLink to="/bug"><button>back</button></NavLink>
+
+   <NavLink to="/bug"><button>back</button></NavLink>
 
     </section>
-//     <ul className="bug-list">
-//         {bugs.map(bug => (
-//             <li key={bug._id}>
-//                 <BugPreview bug={bug} />
-//                 <section className="actions">
-//                     <button><Link to={`/bug/${bug._id}`}>Details</Link></button>
-                    
-//                     {isAllowed(bug) && <button onClick={() => onEditBug(bug)}>Edit</button>}
-//                     {isAllowed(bug) && <button onClick={() => onRemoveBug(bug._id)}>x</button>}
-//                 </section>
-//             </li>
-//         ))}
-//     </ul >
-//     
  }
 

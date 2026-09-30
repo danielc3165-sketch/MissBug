@@ -46,8 +46,9 @@ function getLoggedinUser() {
 
 
 function _setLoggedinUser(user) {
-    const { _id, fullName } = user
-    const userToSave = { _id, fullName }
+    const { _id, fullName, isAdmin } = user
+    const userToSave = { _id, fullName, isAdmin}
+    console.log('Me',userToSave)
     
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
     return userToSave

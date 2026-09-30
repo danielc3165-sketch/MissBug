@@ -7,11 +7,12 @@ _createBugs()
 
 export const bugService = {
     query,
+    queryCurrUserBugs,
     getById,
     save,
     remove,
     getDefaultFilter
-}
+}  
 
 var url = 'http://localhost:3034/api/bug'
 
@@ -24,10 +25,16 @@ function query(filterBy, pageIdx ,sortBy) {
     })
 }
 
+function queryCurrUserBugs(userId){
+    //console.log('ID',userId)
+    return axios.post(url + '/user',{userId})
+    .then(res=>res.data)
+    .catch(err => {'Cannot get bug',err})
+}
+
 function getById(bugId) {
     return axios.get(url + '/' + bugId, { withCredentials: true })
     .then(res => res.data)
-    .then(bug =>{ return bug})
     .catch(err => {'Cannot get bug',err})
 }
 

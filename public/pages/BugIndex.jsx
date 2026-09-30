@@ -94,6 +94,7 @@ export function BugIndex({currUser}) {
         
         <header>
             <h2>Bug List</h2>
+            {currUser && <h3>{'Hellow ' + currUser.fullName + '!'}</h3>}
             {currUser && <button onClick={onAddBug}>Add Bug</button>}
         </header>
         

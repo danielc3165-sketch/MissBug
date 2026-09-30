@@ -6,6 +6,7 @@ import { utilService } from '../public/services/util.service.js'
 
 export const bugService = {
     query,
+    queryUserBugs,
     save,
     get,
     remove,
@@ -54,6 +55,14 @@ function query(filterBy = {}, pageIdx = 0, sortBy = 'title') {
     return Promise.resolve(results)
 }
 
+function queryUserBugs(userId){
+    if(!userId) return
+    console.log('service',userId)
+    var filteredBugs = [...bugs]
+    filteredBugs=filteredBugs.filter(bug=> (bug.creator&&bug.creator._id===userId) )
+    return Promise.resolve(filteredBugs)
+}
+
 function get(_id){
     return Promise.resolve(bugs.find(bug => bug._id === _id))
 }
@@ -62,7 +71,7 @@ function save(bug) {
     if (bug._id) {
         const idx = bugs.findIndex(currBug => currBug._id === bug._id)
         if (idx === -1) return Promise.reject('Bug not found')
-        bugs[idx] = { ...bugs[idx], ...bug }
+        bug= { ...bugs[idx], ...bug }
         //bugs.splice(idx, 1, bug)
     } else {
         bug._id = utilService.makeId()

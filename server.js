@@ -25,10 +25,11 @@ app.set('query parser', 'extended')
 
 app.get('/api/bug', (req, res) => {
 
+     const queryFilter = req.query.filterBy || []
      const filterBy = { 
-        txt: req.query.filterBy.txt || '' ,
-        minSeverity: +req.query.filterBy.minSeverity || 0,
-        labels: req.query.filterBy.labels || []
+        txt: queryFilter.txt || '' ,
+        minSeverity: queryFilter.minSeverity || 0,
+        labels: queryFilter.labels || []
     }
     //console.log('filterBy:', filterBy)
 
@@ -39,6 +40,18 @@ app.get('/api/bug', (req, res) => {
         .then(results => {
             res.send(results)
             //console.log('bugs', bugs)
+        })
+        .catch(() => {
+            loggerService.error('Cannot get bugs', err)
+            res.status(400).send('Cannot get bugs')
+        })
+})
+
+app.post('/api/bug/user', (req, res) =>{
+    const userId=req.body.userId
+    bugService.queryUserBugs(userId)
+    .then(results => {
+            res.send(results)
         })
         .catch(() => {
             loggerService.error('Cannot get bugs', err)
@@ -75,9 +88,11 @@ app.get('/api/bug/:bugId', (req, res) => {
     
 }) 
 
-
 app.put('/api/bug/:id', (req, res) => {
    
+    const user = userService.validateToken(req.cookies.loginToken)
+    if(!user) return res.status(401).send('Unauthenticated...')
+    
     const bug={
         _id: req.body.id,
         title: req.body.title,
@@ -85,7 +100,7 @@ app.put('/api/bug/:id', (req, res) => {
         description: req.body.description,
     }
 
-    console.log('bug', bug)
+    //console.log('bug', bug)
 
     bugService.save(bug)
     .then(savedBug => {
@@ -98,8 +113,11 @@ app.put('/api/bug/:id', (req, res) => {
     })
 }) 
 
-
 app.post('/api/bug', (req, res) => {
+
+    const user = userService.validateToken(req.cookies.loginToken)
+    if(!user) return res.status(401).send('Unauthenticated...')
+
     const bug={
         title: req.body.title,
         severity: req.body.severity,
@@ -120,8 +138,10 @@ app.post('/api/bug', (req, res) => {
     })
 }) 
 
-
 app.delete('/api/bug/:bugId', (req, res) => {
+
+    const user = userService.validateToken(req.cookies.loginToken)
+    if(!user) return res.status(401).send('Unauthenticated...')
 
     const { bugId:_id } = req.params
     //console.log('bugId', _id)
@@ -142,10 +162,10 @@ app.delete('/api/bug/:bugId', (req, res) => {
 app.post('/api/auth/signup', (req, res) =>{
     const user = req.body
     userService.add(user)
-    .then((user)=>{
+    .then(user=>{
         if(user){
-            //console.log('user',user) 
-            res.cookie('loginToken',user)
+            var token=userService.getLoginToken(user) 
+            res.cookie('loginToken',token)
             res.send(user)
         }
         else res.status(400).send('Can not signup')
@@ -156,9 +176,11 @@ app.post('/api/auth/signup', (req, res) =>{
 
 app.post('/api/auth/login', (req, res) =>{
     const user = req.body
+    
     userService.checkLogin(user)
     .then(user=>{
-        res.cookie('loginToken',user)
+        var token=userService.getLoginToken(user) 
+        res.cookie('loginToken',token)
         res.send(user)
     })
     .catch(()=>res.status(404).send('Invalid Credentials'))

@@ -46,7 +46,7 @@ export function LoginSignup({ currUser,setCurrUser }){
 
 
     return <section>
-        <h2>Signup</h2>
+        <h2>{isSignup ? 'Signup' : 'Login'}</h2>
     <form onSubmit={onSubmit}>
         <input type="text" placeholder="User-name" name="userName" onChange={ handleChange}/>
         <input type="password" placeholder="Password" name="password" onChange={ handleChange} />
